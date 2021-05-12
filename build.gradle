@@ -1,7 +1,7 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url = "http://files.minecraftforge.net/maven" }
+        maven { url = "https://files.minecraftforge.net/maven" }
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
@@ -27,10 +27,6 @@ repositories {
         url = "http://maven.cil.li/"
     }
     maven {
-        name = "ComputerCraft"
-        url = "http://cc.crzd.me/maven"
-    }
-    maven {
         name = "hwyla"
         url = 'http://tehnut.info/maven/'
     }
@@ -49,10 +45,6 @@ repositories {
     maven {
         name = "ic2"
         url = "http://maven.ic2.player.to/"
-    }
-    maven {
-        name = "Curseforge"
-        url = "https://minecraft.curseforge.com/api/maven/"
     }
     maven { // Albedo Lights
         url = 'https://repo.elytradev.com/'
@@ -164,17 +156,17 @@ dependencies {
     compileOnly "cofh:CoFHCore:1.12.2-${cofhcore_version}:deobf"
     compileOnly "MCMultiPart2:MCMultiPart:${mcmultipart_version}"
     compileOnly "li.cil.oc:OpenComputers:MC1.12.2-${oc_version}:api"
-    compileOnly "dan200.computercraft:ComputerCraft:${computercraft_version}"
+    //compileOnly "dan200.computercraft:ComputerCraft:${computercraft_version}"
     compileOnly "mcp.mobius.waila:Hwyla:${hwyla_version}:api"
     compileOnly "mcjty.theoneprobe:TheOneProbe-1.12:${top_version}"
     compileOnly "CraftTweaker2:CraftTweaker2-API:${crafttweaker_version}"
     compileOnly "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-${crafttweaker_version}"
     compileOnly "igwmod:IGW-Mod-1.12.2:${igwmod_version}:universal"  // using universal instead of userdev for now
     compileOnly "net.industrial-craft:industrialcraft-2:2.8.27-ex112:api"
-    compileOnly "thaumcraft:Thaumcraft:${thaumcraft_version}"
+    //compileOnly "thaumcraft:Thaumcraft:${thaumcraft_version}"
     compileOnly "team.chisel.ctm:CTM:${ctm_version}:api"
     compileOnly "vazkii.botania:Botania:${botania_version}"
-    compileOnly("appeng:appliedenergistics2:${ae2_version}:api")
+    //compileOnly("appeng:appliedenergistics2:${ae2_version}:api")
     //compileOnly "elucent:albedo:${albedo_version}"
     compileOnly "vazkii.patchouli:Patchouli:${patchouli_version}"
     compileOnly "blusunrize:ImmersiveEngineering:${immersive_engineering_version}"
