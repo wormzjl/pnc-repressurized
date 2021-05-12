@@ -59,6 +59,8 @@ public class TileEntityRefinery extends TileEntityTickableBase
 
     @GuiSynced
     public int minTemp;
+    @GuiSynced
+    public int maxTemp;
 
     @DescSynced
     private int refineryCount; // for particle spawning
@@ -100,6 +102,8 @@ public class TileEntityRefinery extends TileEntityTickableBase
                         inputTank.getFluid().getFluid() : null, refineries.size());
                 currentRecipe = recipe.orElse(null);
                 minTemp = currentRecipe == null ? 0 : currentRecipe.getMinimumTemp();
+                maxTemp = Math.floorDiv(minTemp,10000);
+                minTemp = minTemp%10000;
                 searchForRecipe = false;
             }
             boolean hasWork = false;
@@ -110,9 +114,10 @@ public class TileEntityRefinery extends TileEntityTickableBase
 
                 if (refineries.size() > 1 && redstoneAllows() && refine(refineries, true)) {
                     hasWork = true;
-                    if (heatExchanger.getTemperature() >= currentRecipe.getMinimumTemp()
+                    if (((currentRecipe.getMinimumTemp()<10000 && heatExchanger.getTemperature() >= currentRecipe.getMinimumTemp())||
+                            (heatExchanger.getTemperature() >= Math.floorMod(currentRecipe.getMinimumTemp(),10000))&&(heatExchanger.getTemperature() <= Math.floorDiv(currentRecipe.getMinimumTemp(),10000)))
                             && inputTank.getFluidAmount() >= currentRecipe.input.amount) {
-                        int progress = Math.max(0, ((int) heatExchanger.getTemperature() - (currentRecipe.getMinimumTemp() - 30)) / 30);
+                        int progress = Math.max(0, ((int) heatExchanger.getTemperature() - (Math.floorMod(currentRecipe.getMinimumTemp(),10000) - 30)) / 30);
                         progress = Math.min(5, progress);
                         heatExchanger.addHeat(-progress);
                         workTimer += progress;

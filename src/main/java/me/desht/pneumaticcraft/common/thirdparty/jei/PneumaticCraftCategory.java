@@ -141,7 +141,12 @@ public abstract class PneumaticCraftCategory<T extends IRecipeWrapper> implement
                     heatExchanger = PneumaticRegistry.getInstance().getHeatRegistry().getHeatExchangerLogic(), (int) temperature) {
                 @Override
                 public void addTooltip(int mouseX, int mouseY, List<String> curTip, boolean shift) {
-                    curTip.add("Required Temperature: " + (logic.getTemperatureAsInt() - 273) + "\u00b0C");
+                    if(logic.getTemperatureAsInt()<10000){
+                        curTip.add("Required Temperature: " + (logic.getTemperatureAsInt() - 273) + "\u00b0C");
+                    }
+                    else {
+                        curTip.add("Required Temperature: " + (logic.getTemperatureAsInt()%10000 - 273) + "\u00b0C ~ "+ (Math.floorDiv(logic.getTemperatureAsInt(),10000) - 273) + "\u00b0C");
+                    }
                 }
             };
         }

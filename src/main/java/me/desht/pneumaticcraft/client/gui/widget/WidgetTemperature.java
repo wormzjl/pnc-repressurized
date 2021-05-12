@@ -38,7 +38,7 @@ public class WidgetTemperature extends WidgetBase {
         GlStateManager.color(1, 1, 1, 1);
         Gui.drawModalRectWithCustomSizedTexture(x + 6, y, 6, 0, 7, 50, 18, 50);
 
-        int barLength = (logic.getTemperatureAsInt() - minTemp) * 48 / maxTemp;
+        int barLength = logic.getTemperatureAsInt()<10000?(logic.getTemperatureAsInt() - minTemp) * 48 / maxTemp:0;
         barLength = MathHelper.clamp(barLength, 0, 48);
         Gui.drawModalRectWithCustomSizedTexture(x + 7, y + 1 + 48 - barLength, 13, 48 - barLength, 5, barLength, 18, 50);
 
