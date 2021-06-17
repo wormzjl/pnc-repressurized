@@ -119,7 +119,11 @@ public class TileEntityRefinery extends TileEntityTickableBase
                             && inputTank.getFluidAmount() >= currentRecipe.input.amount) {
                         int progress = Math.max(0, ((int) heatExchanger.getTemperature() - (Math.floorMod(currentRecipe.getMinimumTemp(),10000) - 30)) / 30);
                         progress = Math.min(5, progress);
-                        heatExchanger.addHeat(-progress);
+                        if (currentRecipe.getMinimumTemp()<10000 && currentRecipe.getMinimumTemp()>283 || currentRecipe.getMinimumTemp()>10000 && Math.floorMod(currentRecipe.getMinimumTemp(),10000)>283 ) {
+                            heatExchanger.addHeat(-progress);
+                        } else {
+                            heatExchanger.addHeat(progress);
+                        }
                         workTimer += progress;
                         while (workTimer >= 20 && inputTank.getFluidAmount() >= currentRecipe.input.amount) {
                             workTimer -= 20;
